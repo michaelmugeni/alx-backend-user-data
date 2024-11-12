@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+<<<<<<< HEAD
 """Route module for the API.
 """
 import os
@@ -9,26 +10,44 @@ from flask_cors import (CORS, cross_origin)
 from api.v1.views import app_views
 from api.v1.auth.auth import Auth
 from api.v1.auth.basic_auth import BasicAuth
+=======
+"""
+Route module for the API
+"""
+from os import getenv
+from api.v1.views import app_views
+from flask import Flask, jsonify, abort, request
+from flask_cors import (CORS, cross_origin)
+import os
+>>>>>>> 59f5f196b3b868767bb0d2e3c31181191d49d143
 
 
 app = Flask(__name__)
 app.register_blueprint(app_views)
 CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
+<<<<<<< HEAD
 auth = None
 auth_type = getenv('AUTH_TYPE', 'auth')
 if auth_type == 'auth':
     auth = Auth()
 if auth_type == 'basic_auth':
     auth = BasicAuth()
+=======
+>>>>>>> 59f5f196b3b868767bb0d2e3c31181191d49d143
 
 
 @app.errorhandler(404)
 def not_found(error) -> str:
+<<<<<<< HEAD
     """Not found handler.
+=======
+    """ Not found handler
+>>>>>>> 59f5f196b3b868767bb0d2e3c31181191d49d143
     """
     return jsonify({"error": "Not found"}), 404
 
 
+<<<<<<< HEAD
 @app.errorhandler(401)
 def unauthorized(error) -> str:
     """Unauthorized handler.
@@ -64,3 +83,9 @@ def authenticate_user():
 
 if __name__ == "__main__":
     host = getenv("API_HOST", "0.0.0.0")
+=======
+if __name__ == "__main__":
+    host = getenv("API_HOST", "0.0.0.0")
+    port = getenv("API_PORT", "5000")
+    app.run(host=host, port=port)
+>>>>>>> 59f5f196b3b868767bb0d2e3c31181191d49d143
